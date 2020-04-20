@@ -1,0 +1,10 @@
+---
+- hosts: api_gw_reverse_proxy
+  become: true
+
+  vars_files:
+  - global_vars/vars.yml
+  - environment_vars/{{ ENV }}_vars.yml
+
+  roles:
+  - playbooks/api_gw_reverse_proxy
