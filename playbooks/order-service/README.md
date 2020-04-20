@@ -1,38 +1,43 @@
-Role Name
+Order Service
 =========
 
-A brief description of the role goes here.
+This Ansible role deploys a containerized order-service microservice onto an EC2 instance within the Sales Order System 2.0 EC2 platform.
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+The EC2 instance is already provisioned using Terraform from the [Sales Order System 2.0: EC2 Infrastructre](sales-order-system-2-ec2-infrastructre). 
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+Variables from global vars and an environment specific variable file from the environment_vars directory.
+"Extra Variables" will be passed in on the CLI to `ansible-playbook` using `--extra-vars` flag. See Usage section below.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+No dependencies.
 
-Example Playbook
+Usage
 ----------------
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
+e.g. to deploy into 'dev' environment...
 
-    - hosts: servers
-      roles:
-         - { role: username.rolename, x: 42 }
+```bash
+ansible-playbook -i inventory/hosts deploy-orderservice.yml \
+  --extra-vars="ENV=dev MICROSERVICE_NAME=order-service MICROSERVICE MICROSERVICE_VERSION=1.0.0-SNAPSHOT MICROSERVICE_PORT=8082"
+```
+
+Note above example, we require to pass in an extra variable "ENV" in order to select the correct specific environment specific variable file to use.
 
 License
 -------
 
-BSD
+The Unlicense
 
 Author Information
 ------------------
 
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
+Colin But
+www.colinbut.com
