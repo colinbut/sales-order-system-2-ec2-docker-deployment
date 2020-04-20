@@ -1,0 +1,10 @@
+---
+- hosts: productservice
+  become: true
+
+  vars_files:
+  - global_vars/vars.yml
+  - environment_vars/{{ ENV }}_vars.yml
+
+  roles:
+  - playbooks/product-service

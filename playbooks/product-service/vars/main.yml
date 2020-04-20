@@ -1,0 +1,4 @@
+---
+SPRING_REDIS_HOST: "product-redis-data-store.3r4w85.0001.euw1.cache.amazonaws.com"
+SPRING_REDIS_PORT: 6379
+SPRING_PROFILES_ACTIVE: prod
