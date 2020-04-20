@@ -1,0 +1,20 @@
+[userservice]
+userservice_server ansible_host=52.56.167.136
+
+[customerservice]
+customerservice_server ansible_host=52.56.167.136
+
+[orderservice]
+orderservice_server ansible_host=52.56.167.136
+
+[productservice]
+productservice_server ansible_host=52.56.167.136 
+
+[api_gw_reverse_proxy]
+api_gw_reverse_proxy ansible_host=52.56.167.136
+
+[frontend_webserver]
+sales_order_system_app ansible_host=52.56.167.136
+
+[local]
+control ansible_connection=local
