@@ -1,1 +1,1 @@
-# sales-order-system-2-ec2-docker-deployment
+# Sales Order System 2.0: EC2 Docker Auto Deployment
