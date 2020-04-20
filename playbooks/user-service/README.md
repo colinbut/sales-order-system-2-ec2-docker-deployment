@@ -25,7 +25,7 @@ Usage
 e.g. to deploy into 'dev' environment...
 
 ```bash
-ansible-playbook -i inventory/hosts deploy-userservice.yml \
+ansible-playbook -i inventory/hosts deploy_userservice.yml \
   --extra-vars="ENV=dev MICROSERVICE_NAME=user-service MICROSERVICE MICROSERVICE_VERSION=1.0.0-SNAPSHOT MICROSERVICE_PORT=8080"
 ```
 
