@@ -1,0 +1,10 @@
+---
+- hosts: userservice
+  become: true
+  
+  vars_files:
+  - global_vars/vars.yml
+  - environment_vars/{{ ENV }}_vars.yml
+  
+  roles:
+  - user-service
