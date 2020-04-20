@@ -7,4 +7,4 @@
   - environment_vars/{{ ENV }}_vars.yml
   
   roles:
-  - customer-service
+  - playbooks/customer-service

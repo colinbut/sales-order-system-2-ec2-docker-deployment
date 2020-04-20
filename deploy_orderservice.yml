@@ -7,4 +7,4 @@
   - environment_vars/{{ ENV }}_vars.yml
 
   roles:
-  - order-service
+  - playbooks/order-service
