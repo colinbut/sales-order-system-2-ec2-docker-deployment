@@ -1,0 +1,6 @@
+---
+MYSQL_RDS_URL: "customer-mysql-rds.clhxaflhpmel.eu-west-1.rds.amazonaws.com"
+SPRING_DATASOURCE_URL: "jdbc:mysql://{{ MYSQL_RDS_URL }}/customerdb?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false&allowPublicKeyRetrieval=true"
+SPRING_DATASOURCE_USERNAME: root
+SPRING_DATASOURCE_PASSWORD: password # TOOD: use ansible-vault
+SPRING_PROFILES_ACTIVE: dev
