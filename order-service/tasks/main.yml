@@ -1,0 +1,22 @@
+---
+
+- name: "Login to AWS ECR (AWS Docker Registry) - {{ DOCKER_REGISTRY }}"
+  shell: "aws ecr get-login --region {{ REGION }} --no-include-email | awk '{printf $6}' | docker login -u AWS https://{{ DOCKER_REGISTRY }} --password-stdin"
+
+- name: "Find existing running {{ MICROSERVICE_NAME }}"
+  shell: "docker ps -f name={{ MICROSERVICE_NAME }} -q"
+  register: EXISTING_DOCKER_CONTAINER_RESULT
+
+- name: "Stop existing running {{ MICROSERVICE_NAME }} docker container (if running)"
+  shell: "docker stop {{ EXISTING_DOCKER_CONTAINER_RESULT.stdout }}"
+  when: "(EXISTING_DOCKER_CONTAINER_RESULT.stdout is defined) and (EXISTING_DOCKER_CONTAINER_RESULT.stdout|length > 0)"
+
+- name: "Run Docker Container: {{ MICROSERVICE_NAME }} from Docker image: https://{{ DOCKER_REGISTRY }}/{{ MICROSERVICE_NAME }}:{{ MICROSERVICE_VERSION }}"
+  include_vars:
+    file: vars/main.yml
+  shell: | 
+    docker run -d --rm --name {{ MICROSERVICE_NAME }} -p {{ MICROSERVICE_PORT }}:{{ MICROSERVICE_PORT }} 
+    -e SPRING_DATA_MONGODB_HOST={{ SPRING_DATA_MONGODB_HOST }}
+    -e SPRING_DATA_MONGODB_PORT={{ SPRING_DATA_MONGODB_PORT }}
+    -e SPRING_PROFILES_ACTIVE={{ SPRING_PROFILES_ACTIVE }}
+    {{ DOCKER_REGISTRY }}/{{ MICROSERVICE_NAME }}:{{ MICROSERVICE_VERSION }}
